@@ -48,6 +48,6 @@ def calcular_estadisticas(inventario, total, t_unidad):
          total += subtotal
          unidad = item["Cantidad"]
          t_unidad += unidad 
-         print("-"*30)
-         print(f"El total de su compra completa es {total}")
-         print(f"Y usted compró en total {t_unidad} productos")
+      print("-"*30)
+      print(f"El total de su compra completa es {total}")
+      print(f"Y usted compró en total {t_unidad} productos")
