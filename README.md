@@ -24,6 +24,6 @@ Este programa permite registrar y consultar un inventario de productos, en donde
 
 ## Cómo ejecutar el programa: 
 1. Descargar o clonar el repositorio
-2. Cambiar la rama de entrada a "feature/1.codigo"
+2. Cambiar la rama de entrada a "main"
 3. Abrir la terminal en la carpeta del proyecto "entregable"
 4. Ejecutar el archivo principal
