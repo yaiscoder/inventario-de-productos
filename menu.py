@@ -8,10 +8,7 @@ total = 0
 t_unidad = 0
 
 # Se llaman las funciones que se encunetran en otro archivo para hacer del codigo más limpio y organizado.
-from funciones import mostrar_menu
-from funciones import agregar_producto
-from funciones import mostrar_inventario
-from funciones import calcular_estadisticas
+from funciones import *
 
 
 # Se utiliza un ciclo "while" para validar la opción escogida de acuerdo a la acción a realizar en el menú y así el programa se repita 
@@ -23,10 +20,10 @@ while opcion != 4:
     # Además que se llaman las funciones correspondiente a cada opción del menú
     mostrar_menu()
     opcion = int(input("Ingrese el número correspondiente a la acción que desea realizar: "))
+    print("-"*30)
 
     if opcion == 1:
-     c_producto = int(input("¿Cuántos productos desea agregar? "))
-     agregar_producto(c_producto, inventario)
+     agregar_producto(inventario)
 
     elif opcion == 2:
       mostrar_inventario(inventario)
