@@ -27,7 +27,7 @@ def agregar_producto(inventario):
     print("-"*30)
     print("¡El producto se agregó correctamente!")
     print("-"*30)
-    print(f"{inventario}")
+
 
 def mostrar_inventario(inventario):
     if len(inventario) == 0:
@@ -35,7 +35,7 @@ def mostrar_inventario(inventario):
         print("El inventario está vacio")
     else:
        for producto in inventario:
-          print(producto)
+          print(f"Producto: {producto["Nombre"]} | Precio: {producto["Precio"]} | Cantidad: {producto["Cantidad"]}")
 
 def calcular_estadisticas(inventario, total, t_unidad):
    if len(inventario) == 0:

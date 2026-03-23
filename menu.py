@@ -34,6 +34,7 @@ while opcion != 4:
     elif opcion == 4:
      print("-"*30)
      print("¡Vuelva pronto!")
+     print("-"*30)
      break
 
     else:
