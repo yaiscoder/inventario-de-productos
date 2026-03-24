@@ -12,14 +12,17 @@ while opcion != 9:
     # Se utilizan los condiciones "if", "elif" y "else" para cada acción del menú
     # Además que se llaman las funciones correspondiente para cada acción del menú.
     mostrar_menu()
-    opcion = int(input("Ingrese el número correspondiente a la acción que desea realizar: "))
-    print("-"*30)
+    try:
+      opcion = int(input("Ingrese el número correspondiente a la acción que desea realizar: "))
+      print("-"*30)
+    except ValueError:
+      print("Debe ingresar un número válido")
 
     if opcion == 1:  #Se agrega un nuevo producto
      nombre = input("Ingrese el nombre del producto: ")
      precio = float(input("Ingrese el precio del producto: "))
      cantidad = int(input("Ingrese cuantos productos desea comprar: "))
-     if precio <= 0 or cantidad <= 0:
+     while precio <= 0 or cantidad <= 0:
         print("-"*30)
         print("¡Error! recuerda que el precio y la cantidad no pueden ser negativos")
         print("Introducelos de nuevo")
@@ -75,7 +78,7 @@ while opcion != 9:
          print("Su producto se actualizó correctamente")
          print("-"*30)
        else:
-         print("Su producto no se encuentró para actualizar")
+         print("Su producto no se encontró para actualizar")
          print("-"*30)
 
 
@@ -106,7 +109,28 @@ while opcion != 9:
       guardar_csv(inventario, ruta, incluir_header=True)
     
     elif opcion == 8: # Carga en CSV
-      print
+      ruta = input("Ingrese la ruta del archivo CSV a cargar: ")
+      cargado = cargar_csv(ruta)
+    
+      if len(cargado) == 0:
+        print("-"*30)
+        print("Inventario vacio")
+        continue
+
+      # Preguntar sobrescribir o fusionar
+      decision = input("¿Desea sobrescribir el inventario actual? (S/N): ").strip().upper()
+      if decision == "S":
+        inventario[:] = cargado
+        print("Inventario reemplazado por el CSV cargado.")
+      else:
+        for producto in cargado: 
+            existente = buscar_producto(inventario, producto["Nombre"])
+            if existente:
+                existente["Cantidad"] += producto["Cantidad"]
+                existente["Precio"] = producto["Precio"]
+            else:
+                inventario.append(producto)
+        print("Inventario fusionado con el CSV cargado.")
         
     elif opcion == 9:  # Sale del programa
      print("-"*30)
@@ -114,7 +138,7 @@ while opcion != 9:
      print("-"*30)
      break
 
-    else:  # Mensaje de erro sino introduce valor de (1-9)
+    else:  # Mensaje de error sino se introduce valor entre (1-9)
      print("-"*30)
      print("¡Opción invalida, intentelo nuevamente!")
 

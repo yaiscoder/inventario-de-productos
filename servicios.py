@@ -37,7 +37,6 @@ def agregar_producto(inventario, nombre, precio, cantidad):
     print("-"*30)
     print("¡El producto se agregó correctamente!")
     print("-"*30)
-    return inventario
 
 
 def mostrar_inventario(inventario):
@@ -121,7 +120,7 @@ def eliminar_producto(inventario, nombre):
 
 
 def calcular_estadisticas(inventario):
-   """
+    """
     Calcula estadísticas del inventario.
 
     Parámetros:
@@ -135,21 +134,22 @@ def calcular_estadisticas(inventario):
     None: Si el inventario está vacío.
     """
 
-   valor_total = 0
-   unidades_totales = 0
-   for item in inventario:
-     cost = item["Precio"]
-     amount = item["Cantidad"]
-     subtotal = cost * amount
-     valor_total += subtotal
-     unidades_totales = len(inventario)
-     mas_caro = max(inventario, key=lambda p: p["Precio"])
-     mayor_stock = max(inventario, key=lambda p: p["Cantidad"])
-   
-   print("-"*30)
-   print(f"El total es: ${valor_total}")
-   print(f"Hay un total de {unidades_totales} productos")
-   print(f"El producto más caro es: {mas_caro}")
-   print(f"El producto con mayor stock en el inventario es: {mayor_stock}")
+    valor_total = 0
+    unidades_totales = 0
 
-   return unidades_totales, valor_total, mas_caro, mayor_stock
+    for item in inventario:
+        cost = item["Precio"]
+        amount = item["Cantidad"]
+        subtotal = cost * amount
+        valor_total += subtotal
+        unidades_totales = len(inventario)
+    mas_caro = max(inventario, key=lambda p: p["Precio"])
+    mayor_stock = max(inventario, key=lambda p: p["Cantidad"])
+   
+    print("-"*30)
+    print(f"El total es: ${valor_total}")
+    print(f"Hay un total de {unidades_totales} productos")
+    print(f"El producto más caro es: {mas_caro}")
+    print(f"El producto con mayor stock en el inventario es: {mayor_stock}")
+
+    return unidades_totales, valor_total, mas_caro, mayor_stock
