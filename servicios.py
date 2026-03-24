@@ -1,6 +1,6 @@
 def mostrar_menu():
     print("-"*30)
-    print("MENÚ")
+    print(" ======== MENÚ ======== ")
     print("-"*30)
     print("1. Agregar")
     print("2. Mostrar")
@@ -37,6 +37,7 @@ def agregar_producto(inventario, nombre, precio, cantidad):
     print("-"*30)
     print("¡El producto se agregó correctamente!")
     print("-"*30)
+    return inventario
 
 
 def mostrar_inventario(inventario):
@@ -50,12 +51,8 @@ def mostrar_inventario(inventario):
     None
     """
 
-    if len(inventario) == 0:
-        print("-"*30)
-        print("El inventario está vacio")
-    else:
-       for producto in inventario:
-          print(f"Producto: {producto['Nombre']} | Precio: {producto['Precio']} | Cantidad: {producto['Cantidad']}")
+    for producto in inventario:
+        print(f"Producto: {producto['Nombre']} | Precio: {producto['Precio']} | Cantidad: {producto['Cantidad']}")
 
 
 def buscar_producto(inventario, nombre):
@@ -70,14 +67,11 @@ def buscar_producto(inventario, nombre):
     dict: Producto encontrado.
     None: Si no se encuentra el producto.
     """
-    if len(inventario) == 0:
-        print("-"*30)
-        print("El inventario está vacio")
-    else:
-     for producto in inventario:
-        if producto['Nombre'].lower() == nombre.lower():
+
+    for producto in inventario:
+        if producto['Nombre'].strip().lower()== nombre.strip().lower():
             return producto
-     return None
+    return None
     
 
 def actualizar_producto(inventario, nombre, nuevo_precio=None, nueva_cantidad=None):
@@ -94,19 +88,15 @@ def actualizar_producto(inventario, nombre, nuevo_precio=None, nueva_cantidad=No
     bool: True si el producto fue actualizado.
     bool: False si el producto no fue encontrado.
     """
-    p = buscar_producto(inventario, nombre)
+    producto = buscar_producto(inventario, nombre)
 
-    if len(inventario) == 0:
-        print("-"*30)
-        print("El inventario está vacio")
-    else:
-        if p:
-            if nuevo_precio is not None:
-                p['Precio'] = nuevo_precio
-            if nueva_cantidad is not None:
-                p['Cantidad'] = nueva_cantidad
-            return True
-        return False
+    if producto:
+        if nuevo_precio is not None:
+            producto['Precio'] = nuevo_precio
+        if nueva_cantidad is not None:
+            producto['Cantidad'] = nueva_cantidad
+        return True
+    return False
 
 
 def eliminar_producto(inventario, nombre):
@@ -124,14 +114,10 @@ def eliminar_producto(inventario, nombre):
 
     p = buscar_producto(inventario, nombre)
 
-    if len(inventario) == 0:
-        print("-"*30)
-        print("El inventario está vacio")
-    else:
-        if p:
-            inventario.remove(p)
-            return True
-        return False
+    if p:
+        inventario.remove(p)
+        return True
+    return False
 
 
 def calcular_estadisticas(inventario):
@@ -142,7 +128,6 @@ def calcular_estadisticas(inventario):
     inventario (list): Lista de productos.
 
     Retorna:
-    dict: Diccionario con las siguientes métricas:
     - unidades_totales (int)
     - valor_total (float)
     - producto_mas_caro (dict)
@@ -150,23 +135,21 @@ def calcular_estadisticas(inventario):
     None: Si el inventario está vacío.
     """
 
-   if len(inventario) == 0:
-        print("-"*30)
-        print("El inventario está vacio, no hay estadisticas para calcular")
-        return None
-   else: 
-      valor_total = 0
-      unidades_totales = 0
-      for item in inventario:
-         cost = item["Precio"]
-         amount = item["Cantidad"]
-         subtotal = cost * amount
-         valor_total += subtotal
-         unidades_totales = len(inventario)
-      mas_caro = max(inventario, key=lambda p: p["Precio"])
-      mayor_stock = max(inventario, key=lambda p: p["Cantidad"])
-      print("-"*30)
-      print(f"El total es: ${valor_total}")
-      print(f"Hay un total de {unidades_totales} productos")
-      print(f"El producto más caro es: {mas_caro}")
-      print(f"El producto con mayor stock en el inventario es: {mayor_stock}")
+   valor_total = 0
+   unidades_totales = 0
+   for item in inventario:
+     cost = item["Precio"]
+     amount = item["Cantidad"]
+     subtotal = cost * amount
+     valor_total += subtotal
+     unidades_totales = len(inventario)
+     mas_caro = max(inventario, key=lambda p: p["Precio"])
+     mayor_stock = max(inventario, key=lambda p: p["Cantidad"])
+   
+   print("-"*30)
+   print(f"El total es: ${valor_total}")
+   print(f"Hay un total de {unidades_totales} productos")
+   print(f"El producto más caro es: {mas_caro}")
+   print(f"El producto con mayor stock en el inventario es: {mayor_stock}")
+
+   return unidades_totales, valor_total, mas_caro, mayor_stock
