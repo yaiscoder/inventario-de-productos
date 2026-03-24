@@ -2,8 +2,9 @@
 inventario = []
 opcion = 0
 
-# Se llaman las funciones que se encunetran en otro archivo.
+# Se llaman las funciones que se encuentran en otro archivo.
 from servicios import *
+from archivos import *
 
 # Se utiliza un ciclo "while" para validar la opción escogida de acuerdo a la acción a realizar en el menú 
 while opcion != 9:
@@ -101,7 +102,8 @@ while opcion != 9:
        calcular_estadisticas(inventario)
 
     elif opcion == 7: # Guarda en CSV
-      print
+      ruta = input("Ingrese la ruta y el nombre del archivo CSV: ")
+      guardar_csv(inventario, ruta, incluir_header=True)
     
     elif opcion == 8: # Carga en CSV
       print
