@@ -70,7 +70,7 @@ while opcion != 9:
        nombre = input("Ingrese el nombre del producto que desea actualizar: ")
        precio = float(input("Ingrese el nuevo precio: "))
        cantidad = int(input("Ingrese la cantidad a comprar: "))
-       if precio <= 0 or cantidad <= 0:
+       while precio <= 0 or cantidad <= 0:
          print("-"*30)
          print("¡Error! recuerda que el precio y la cantidad no pueden ser negativos")
          print("Introducelos de nuevo")

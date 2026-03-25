@@ -68,7 +68,7 @@ def buscar_producto(inventario, nombre):
     """
 
     for producto in inventario:
-        if producto['Nombre'].strip().lower()== nombre.strip().lower():
+        if producto['Nombre'].strip().lower() == nombre.strip().lower():
             return producto
     return None
     
