@@ -115,7 +115,12 @@ while opcion != 9:
 
     elif opcion == 7: # Guarda en CSV
       ruta = input("Ingrese la ruta y el nombre del archivo CSV: ")
-      guardar_csv(inventario, ruta, incluir_header=True)
+      if ruta.split(".") != "csv":
+        print("-"*30)
+        print("¡Error! Recuerda que el archivo tiene que ser 'csv'")
+        print("-"*30)
+      else:
+       guardar_csv(inventario, ruta, incluir_header=True)
     
     elif opcion == 8: # Carga en CSV
       ruta = input("Ingrese la ruta del archivo CSV a cargar: ")
