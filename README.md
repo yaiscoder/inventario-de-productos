@@ -34,4 +34,4 @@ Este programa permite registrar y consultar un inventario de productos mediante 
 4. Seguir las instrucciones del menú.
 
 ##Diagrama de flujo
-![image alt](diagrama-inventario-semana3.drawio (2).png)
+![diagrama-inventario-semana3.drawio (2).png]
