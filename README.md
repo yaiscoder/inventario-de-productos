@@ -34,4 +34,4 @@ Este programa permite registrar y consultar un inventario de productos mediante 
 4. Seguir las instrucciones del menú.
 
 ##Diagrama de flujo
-![diagrama-inventario-semana3.drawio (2).png]
+![diagrama](https://github.com/yaiscoder/inventario-de-productos/blob/main/diagrama-inventario-semana3.drawio%20(2).png?raw=true)
