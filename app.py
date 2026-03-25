@@ -16,7 +16,9 @@ while opcion != 9:
       opcion = int(input("Ingrese el número correspondiente a la acción que desea realizar: "))
       print("-"*30)
     except ValueError:
+      print("-"*30)
       print("Debe ingresar un número válido")
+      print("-"*30)
 
     if opcion == 1:  #Se agrega un nuevo producto
      nombre = input("Ingrese el nombre del producto: ")
@@ -37,6 +39,7 @@ while opcion != 9:
       if len(inventario) == 0:
         print("-"*30)
         print("El inventario está vacio")
+        print("-"*30)
       else: 
         mostrar_inventario(inventario)
 
@@ -44,6 +47,7 @@ while opcion != 9:
       if len(inventario) == 0:
         print("-"*30)
         print("El inventario está vacio")
+        print("-"*30)
       else:
         nombre = input("Ingrese el nombre del producto que desea buscar: ")
         p = buscar_producto(inventario, nombre)
@@ -61,6 +65,7 @@ while opcion != 9:
       if len(inventario) == 0:
         print("-"*30)
         print("El inventario está vacio")
+        print("-"*30)
       else: 
        nombre = input("Ingrese el nombre del producto que desea actualizar: ")
        precio = float(input("Ingrese el nuevo precio: "))
@@ -78,6 +83,7 @@ while opcion != 9:
          print("Su producto se actualizó correctamente")
          print("-"*30)
        else:
+         print("-"*30)
          print("Su producto no se encontró para actualizar")
          print("-"*30)
 
@@ -86,6 +92,7 @@ while opcion != 9:
       if len(inventario) == 0:
         print("-"*30)
         print("El inventario está vacio")
+        print("-"*30)
       else:
         nombre = input("Introduzca el nombre del producto que desea eliminar: ")
         if eliminar_producto(inventario, nombre):
@@ -93,6 +100,7 @@ while opcion != 9:
          print("Su producto se eliminó correctamente")
          print("-"*30)
         else:
+         print("-"*30)
          print("Su producto no se logró eliminar")
          print("-"*30) 
 
@@ -101,6 +109,7 @@ while opcion != 9:
       if len(inventario) == 0:
         print("-"*30)
         print("El inventario está vacio")
+        print("-"*30)
       else:
        calcular_estadisticas(inventario)
 
@@ -112,17 +121,16 @@ while opcion != 9:
       ruta = input("Ingrese la ruta del archivo CSV a cargar: ")
       cargado = cargar_csv(ruta)
     
-      if len(cargado) == 0:
-        print("-"*30)
-        print("Inventario vacio")
-        continue
-
       # Preguntar sobrescribir o fusionar
       decision = input("¿Desea sobrescribir el inventario actual? (S/N): ").strip().upper()
       if decision == "S":
         inventario[:] = cargado
+        accion = "Reemplazo"
+        print("-"*30)
         print("Inventario reemplazado por el CSV cargado.")
+        print("-"*30)
       else:
+        accion = "Fusión"
         for producto in cargado: 
             existente = buscar_producto(inventario, producto["Nombre"])
             if existente:
@@ -130,7 +138,9 @@ while opcion != 9:
                 existente["Precio"] = producto["Precio"]
             else:
                 inventario.append(producto)
+        print("-"*30)
         print("Inventario fusionado con el CSV cargado.")
+        print("-"*30)
         
     elif opcion == 9:  # Sale del programa
      print("-"*30)
@@ -141,4 +151,5 @@ while opcion != 9:
     else:  # Mensaje de error sino se introduce valor entre (1-9)
      print("-"*30)
      print("¡Opción invalida, intentelo nuevamente!")
+     print("-"*30)
 

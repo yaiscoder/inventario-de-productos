@@ -84,10 +84,10 @@ def cargar_csv(ruta):
                 except (ValueError, KeyError):
                     filas_invalidas += 1
                     continue
-
+        print("-"*30)
         print(f"{len(inventario_cargado)} productos cargados desde el CSV.")
-        if filas_invalidas > 0:
-            print(f"{filas_invalidas} filas inválidas omitidas.")
+        print(f"{filas_invalidas} filas inválidas omitidas.")
+        print("-"*30)
 
         return inventario_cargado
 
