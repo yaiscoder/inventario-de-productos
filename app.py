@@ -115,7 +115,7 @@ while opcion != 9:
 
     elif opcion == 7: # Guarda en CSV
       ruta = input("Ingrese la ruta y el nombre del archivo CSV: ")
-      if ruta.split(".") != "csv":
+      if ruta.split(".")[-1] != "csv":
         print("-"*30)
         print("¡Error! Recuerda que el archivo tiene que ser 'csv'")
         print("-"*30)
@@ -124,6 +124,11 @@ while opcion != 9:
     
     elif opcion == 8: # Carga en CSV
       ruta = input("Ingrese la ruta del archivo CSV a cargar: ")
+      if ruta.split(".")[-1] != "csv":
+        print("-"*30)
+        print("¡Error! Recuerda que el archivo tiene que ser 'csv'")
+        print("-"*30)
+        continue
       cargado = cargar_csv(ruta)
     
       # Preguntar sobrescribir o fusionar
